@@ -17,7 +17,7 @@ import {
   Typography
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+
 
 // Import the logo from the correct path
 import EminenceAdviceLogo from '../images/EminenceAdvice logo.png';
