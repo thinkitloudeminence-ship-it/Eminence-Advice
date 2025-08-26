@@ -1,0 +1,24 @@
+.modal-title {
+  background-color: #000 !important;
+  color: #FFD700 !important;
+}
+
+.modal-content {
+  background-color: #1a1a1a !important;
+  color: white !important;
+  padding-top: 16px !important;
+}
+
+.modal-actions {
+  background-color: #1a1a1a !important;
+}
+
+.cancel-button {
+  color: white !important;
+}
+
+.download-button {
+  background: linear-gradient(45deg, #FFD700 30%, #D4AF37 90%) !important;
+  color: black !important;
+  font-weight: bold !important;
+}

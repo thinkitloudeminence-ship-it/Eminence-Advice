@@ -9,6 +9,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import { Box } from '@mui/material';
+import BackgroundAnimation from './components/BackgroundAnimation';
 
 
 const theme = createTheme({
@@ -35,6 +36,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      
       <Router>
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Navbar />

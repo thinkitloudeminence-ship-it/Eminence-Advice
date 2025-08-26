@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+}
+
+.footer {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 3rem 1rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fixed-register-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: #FFD700 !important;
+}
+
+.fixed-register-button:hover {
+  background-color: #D4AF37 !important;
+}
+
+.payment-icon {
+  color: black;
+}
