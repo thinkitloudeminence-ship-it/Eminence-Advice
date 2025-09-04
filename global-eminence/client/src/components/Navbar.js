@@ -134,7 +134,7 @@ const Navbar = (props) => {
                   src={EminenceAdviceLogo}
                   alt="Eminence Advice Logo"
                   style={{
-                    height: isMobile ? "110px" : "130px", // ✅ Logo size same rakha
+                    height: isMobile ? "140px" : "170px", // ✅ Logo size same rakha
                     width: "200px",
                     objectFit: "contain",
                   }}
