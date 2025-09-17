@@ -11,6 +11,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import PeopleIcon from "@mui/icons-material/People";
 import PublicIcon from "@mui/icons-material/Public";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import { Helmet } from "react-helmet";
 
 // Replace with your actual image
 import heroImage from "../images/hero-student.jpg";
@@ -19,6 +20,22 @@ import StudyAbroadImage from '../images/study-abroad-campus.jpg';
 export default function HomePage() {
   return (
     <>
+      {/* ================= SEO ================= */}
+      <Helmet>
+        <title>Eminence Advice Global Education Experts</title>
+        <meta
+          name="description"
+          content="Eminence Advice Global Education Experts offers personalized guidance for students aspiring to study abroad. With deep expertise in international education systems, they simplify admissions, visas, and career planning. Their dedicated team ensures a smooth academic journey from start to finish. Empowering futures through global opportunities is their core mission."
+        />
+        <meta
+          name="keywords"
+          content="Study Abroad Consultants, Overseas Education Experts, International Education Guidance, Student Visa Assistance, Global Education Opportunities, Career Planning for Abroad Studies, Admissions Support for Foreign Universities, Personalized Study Abroad Guidance, Education Consultancy Services"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Eminence Advice Global Education Experts" />
+        <meta property="og:description" content="Eminence Advice Global Education Experts offers personalized guidance for students aspiring to study abroad. With deep expertise in international education systems, they simplify admissions, visas, and career planning. Their dedicated team ensures a smooth academic journey from start to finish." />
+        <meta property="og:type" content="website" />
+      </Helmet>
       {/* Hero Section */}
       <Box
         sx={{
