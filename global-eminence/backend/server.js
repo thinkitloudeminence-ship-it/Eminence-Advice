@@ -1,4 +1,6 @@
  
+import sitemapRoute from './routes/sitemap.js';
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -23,6 +25,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/global-em
 
 // Routes
 app.use('/api/contact', require('./routes/contact'));
+app.use('/', sitemapRoute);
 
 // Basic route
 app.get('/', (req, res) => {
