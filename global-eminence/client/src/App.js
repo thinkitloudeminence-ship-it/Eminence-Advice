@@ -9,6 +9,8 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import { Box } from '@mui/material';
+import Blogs from './pages/Blogs';
+import AbroadColleges from './pages/AbroadColleges';
 import BackgroundAnimation from './components/BackgroundAnimation';
 
 
@@ -36,7 +38,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      
+
       <Router>
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Navbar />
@@ -46,6 +48,8 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/blogs" element={<Blogs />} />
+              <Route path="/colleges" element={<AbroadColleges />} />
             </Routes>
           </Box>
           <Footer />
