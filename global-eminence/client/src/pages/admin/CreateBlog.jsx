@@ -728,6 +728,7 @@ import Underline from "@tiptap/extension-underline";
 import Highlight from "@tiptap/extension-highlight";
 import Placeholder from "@tiptap/extension-placeholder";
 import axios from "../../api/axios";
+import "prosemirror-view/style/prosemirror.css";
 
 export default function CreateBlog() {
     const [formData, setFormData] = useState({
@@ -813,6 +814,7 @@ export default function CreateBlog() {
             await axios.post("/api/blogs", data, {
                 headers: { "Content-Type": "multipart/form-data", Authorization: `Bearer ${token}` },
             });
+
 
             alert("✅ Blog created successfully!");
             navigate("/admin/dashboard");

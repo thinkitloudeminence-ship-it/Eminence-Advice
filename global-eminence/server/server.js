@@ -47,11 +47,12 @@ const app = express();
 app.use(helmet());
 
 // CORS configuration
-app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    credentials: true
-}));
-
+app.use(
+  cors({
+    origin: ["https://www.eminenceadvice.com", "http://localhost:3000"],
+    credentials: true,
+  })
+);
 // Logging middleware
 app.use(morgan('dev'));
 
