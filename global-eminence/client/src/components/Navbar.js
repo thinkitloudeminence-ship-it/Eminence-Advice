@@ -270,13 +270,13 @@ const Navbar = (props) => {
   };
 
   const navItems = [
-  { label: 'Home', path: '/' },
-  { label: 'About', path: '/about' },
-  { label: 'Services', path: '/services' },
-  { label: 'Blogs', path: '/blogs' },
-  { label: 'Colleges', path: '/colleges' },
-  { label: 'Contact', path: '/contact' },
-];
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label: 'Services', path: '/services' },
+    { label: 'Blogs', path: '/blogs' },
+    { label: 'Colleges', path: '/colleges' },
+    { label: 'Contact', path: '/contact' },
+  ];
 
   const drawer = (
     <Box sx={{ width: 280, height: '100%', display: 'flex', flexDirection: 'column' }}>
