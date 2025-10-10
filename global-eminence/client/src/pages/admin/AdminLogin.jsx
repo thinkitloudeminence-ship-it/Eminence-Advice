@@ -1,6 +1,8 @@
+// AdminLogin.jsx
 import React, { useState } from 'react';
-import api from '../../api/axios';
+import { Box, TextField, Button, Typography, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function AdminLogin() {
     const [email, setEmail] = useState('');
@@ -8,27 +10,28 @@ export default function AdminLogin() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await api.post('/api/admin/login', { email, password });
+            const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/api/admin/login`, { email, password });
             localStorage.setItem('adminToken', data.token);
-            localStorage.setItem('adminName', data.name);
             navigate('/admin/dashboard');
-        } catch (err) {
-            setError(err.response?.data?.message || 'Login failed');
+        } catch {
+            setError('Invalid credentials');
         }
     };
 
     return (
-        <div style={{ maxWidth: 400, margin: '50px auto' }}>
-            <h2>Admin Login</h2>
-            <form onSubmit={handleSubmit}>
-                <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-                <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
-                <button type="submit">Login</button>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-            </form>
-        </div>
+        <Container maxWidth="sm">
+            <Box sx={{ mt: 10 }}>
+                <Typography variant="h4" align="center">Admin Login</Typography>
+                <form onSubmit={handleLogin}>
+                    <TextField label="Email" fullWidth margin="normal" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <TextField label="Password" type="password" fullWidth margin="normal" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    {error && <Typography color="error">{error}</Typography>}
+                    <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>Login</Button>
+                </form>
+            </Box>
+        </Container>
     );
 }

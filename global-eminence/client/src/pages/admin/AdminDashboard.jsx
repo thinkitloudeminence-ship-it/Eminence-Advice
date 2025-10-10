@@ -1,126 +1,88 @@
-import React, { useState, useEffect } from 'react';
+// AdminDashboard.jsx
+import React, { useEffect, useState } from 'react';
+import { Box, Container, Typography, Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import api from '../../api/axios';
-import {
-  Box, Typography, Button, Table, TableBody, TableCell,
-  TableContainer, TableHead, TableRow, Paper, Alert, CircularProgress,
-  Dialog, DialogTitle, DialogContent, DialogActions, IconButton
-} from '@mui/material';
-import { Edit, Delete, Refresh } from '@mui/icons-material';
 
 export default function AdminDashboard() {
   const [contacts, setContacts] = useState([]);
   const [blogs, setBlogs] = useState([]);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [deleteDialog, setDeleteDialog] = useState({ open: false, blogId: null, blogTitle: '' });
   const navigate = useNavigate();
+
   const token = localStorage.getItem('adminToken');
 
-  useEffect(() => { fetchData(); }, []);
-
-  const fetchData = async () => {
-    setLoading(true); setError('');
-    try { await Promise.all([fetchBlogs(), fetchContacts()]); }
-    catch { setError('Failed to fetch data'); }
-    finally { setLoading(false); }
+  const fetchContacts = async () => {
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/contact`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    setContacts(data);
   };
 
   const fetchBlogs = async () => {
-    try { const { data } = await api.get('/api/blogs'); setBlogs(data || []); }
-    catch (err) { console.error(err); throw err; }
+    const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/blogs`);
+    setBlogs(data);
   };
 
-  const fetchContacts = async () => {
-    try { const { data } = await api.get('/api/contact'); setContacts(data.data || []); }
-    catch (err) { console.error(err); throw err; }
+  useEffect(() => {
+    if (!token) return navigate('/admin/login');
+    fetchContacts();
+    fetchBlogs();
+  }, [token]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('adminToken');
+    navigate('/admin/login');
   };
-
-  const handleDeleteBlog = async (blogId) => {
-    try {
-      await api.delete(`/api/blogs/${blogId}`, { headers: { Authorization: `Bearer ${token}` } });
-      setDeleteDialog({ open: false, blogId: null, blogTitle: '' });
-      fetchBlogs();
-    } catch (err) { setError('Failed to delete blog'); }
-  };
-
-  const openDeleteDialog = (blogId, blogTitle) => setDeleteDialog({ open: true, blogId, blogTitle });
-  const closeDeleteDialog = () => setDeleteDialog({ open: false, blogId: null, blogTitle: '' });
-
-  if (loading) return <Box sx={{ display: 'flex', justifyContent: 'center', height: '50vh' }}><CircularProgress /></Box>;
 
   return (
-    <Box sx={{ maxWidth: 1200, margin: '50px auto', p: 3 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 4 }}>
-        <Typography variant="h4" fontWeight="bold">Admin Dashboard</Typography>
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button startIcon={<Refresh />} onClick={fetchData} variant="outlined">Refresh</Button>
-          <Button variant="contained" onClick={() => navigate('/admin/blog/create')} sx={{ backgroundColor: '#FF6600' }}>+ Create New Blog</Button>
-        </Box>
+    <Container maxWidth="lg" sx={{ mt: 4 }}>
+      <Box display="flex" justifyContent="space-between" mb={4}>
+        <Typography variant="h4">Admin Dashboard</Typography>
+        <Button variant="contained" color="secondary" onClick={handleLogout}>Logout</Button>
       </Box>
 
-      {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+      <Typography variant="h5" mb={2}>Contact Submissions</Typography>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Name</TableCell><TableCell>Email</TableCell><TableCell>Phone</TableCell><TableCell>Message</TableCell><TableCell>Date</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {contacts.map(c => (
+            <TableRow key={c._id}>
+              <TableCell>{c.name}</TableCell>
+              <TableCell>{c.email}</TableCell>
+              <TableCell>{c.phone}</TableCell>
+              <TableCell>{c.message}</TableCell>
+              <TableCell>{new Date(c.createdAt).toLocaleString()}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
 
-      {/* Blogs Section */}
-      <Paper sx={{ p: 3, mb: 4 }}>
-        <Typography variant="h5" gutterBottom>Blogs</Typography>
-        <TableContainer><Table>
-          <TableHead>
-            <TableRow><th>Title</th><th>Slug</th><th>Category</th><th>Status</th><th>Actions</th></TableRow>
-          </TableHead>
-          <TableBody>
-            {blogs.map(blog => (
-              <TableRow key={blog._id}>
-                <TableCell>{blog.title}</TableCell>
-                <TableCell>{blog.slug}</TableCell>
-                <TableCell>{blog.category || '-'}</TableCell>
-                <TableCell>
-                  <Box sx={{ display: 'inline-block', px: 1, py: 0.5, borderRadius: 1, backgroundColor: blog.isPublished ? '#4caf50' : '#ff9800', color: 'white', fontSize: '0.75rem' }}>
-                    {blog.isPublished ? 'Published' : 'Draft'}
-                  </Box>
-                </TableCell>
-                <TableCell>
-                  <IconButton color="primary" onClick={() => navigate(`/admin/blog/edit/${blog._id}`)}><Edit /></IconButton>
-                  <IconButton color="error" onClick={() => openDeleteDialog(blog._id, blog.title)}><Delete /></IconButton>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table></TableContainer>
-        {blogs.length === 0 && <Typography textAlign="center" sx={{ py: 3 }}>No blogs found</Typography>}
-      </Paper>
-
-      {/* Contacts Section */}
-      <Paper sx={{ p: 3 }}>
-        <Typography variant="h5" gutterBottom>Contact Submissions</Typography>
-        <TableContainer><Table>
-          <TableHead>
-            <TableRow><th>Name</th><th>Email</th><th>Phone</th><th>Message</th><th>Created At</th></TableRow>
-          </TableHead>
-          <TableBody>
-            {contacts.map(contact => (
-              <TableRow key={contact._id}>
-                <TableCell>{contact.name}</TableCell>
-                <TableCell>{contact.email}</TableCell>
-                <TableCell>{contact.phone || '-'}</TableCell>
-                <TableCell>{contact.message}</TableCell>
-                <TableCell>{new Date(contact.createdAt).toLocaleString()}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table></TableContainer>
-        {contacts.length === 0 && <Typography textAlign="center" sx={{ py: 3 }}>No contact submissions</Typography>}
-      </Paper>
-
-      {/* Delete Dialog */}
-      <Dialog open={deleteDialog.open} onClose={closeDeleteDialog}>
-        <DialogTitle>Confirm Delete</DialogTitle>
-        <DialogContent>Are you sure you want to delete "{deleteDialog.blogTitle}"?</DialogContent>
-        <DialogActions>
-          <Button onClick={closeDeleteDialog}>Cancel</Button>
-          <Button onClick={() => handleDeleteBlog(deleteDialog.blogId)} color="error" variant="contained">Delete</Button>
-        </DialogActions>
-      </Dialog>
-    </Box>
+      <Typography variant="h5" mt={4} mb={2}>Blogs</Typography>
+      <Button variant="contained" color="primary" sx={{ mb: 2 }} onClick={() => navigate('/admin/blogs/new')}>Create Blog</Button>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Title</TableCell><TableCell>Category</TableCell><TableCell>Tags</TableCell><TableCell>Actions</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {blogs.map(b => (
+            <TableRow key={b._id}>
+              <TableCell>{b.title}</TableCell>
+              <TableCell>{b.category}</TableCell>
+              <TableCell>{b.tags}</TableCell>
+              <TableCell>
+                <Button onClick={() => navigate(`/admin/blogs/${b._id}/edit`)}>Edit</Button>
+                <Button color="error">Delete</Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Container>
   );
 }
