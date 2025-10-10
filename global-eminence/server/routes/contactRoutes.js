@@ -1,13 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('../models/Contact'); // Make sure this is imported
-const { protect } = require('../middleware/authMiddleware');
-const { createContact, getAllContacts } = require('../controllers/contactController');
+const Contact = require('../models/Contact');
 
-// ✅ Public route: create a new contact
-router.post('/', createContact);
+// Add contact
+router.post('/', async (req, res) => {
+  const { name, email, phone, message } = req.body;
+  const contact = await Contact.create({ name, email, phone, message });
+  res.json(contact);
+});
 
-// ✅ Protected route: get all contact submissions (admin only)
-router.get('/', protect, getAllContacts);
+// Get all contacts
+router.get('/', async (req, res) => {
+  const contacts = await Contact.find().sort({ createdAt: -1 });
+  res.json({ data: contacts });
+});
 
 module.exports = router;
+
