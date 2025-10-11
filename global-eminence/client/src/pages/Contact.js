@@ -159,6 +159,264 @@
 // }
 
 
+// // client/src/pages/Contact.jsx
+// import React, { useState } from 'react';
+// import {
+//   Box,
+//   Container,
+//   Typography,
+//   TextField,
+//   Button,
+//   Grid,
+//   Paper,
+//   Alert,
+//   Snackbar
+// } from "@mui/material";
+// import { Helmet } from "react-helmet";
+// import LocationOnIcon from "@mui/icons-material/LocationOn";
+// import PhoneIcon from "@mui/icons-material/Phone";
+// import EmailIcon from "@mui/icons-material/Email";
+// import api from '../api/axios';
+
+// export default function Contact() {
+//   const [form, setForm] = useState({
+//     name: '',
+//     email: '',
+//     phone: '',
+//     message: ''
+//   });
+//   const [snackbar, setSnackbar] = useState({
+//     open: false,
+//     message: '',
+//     severity: 'success'
+//   });
+
+//   const orangeColor = "#FF6600";
+
+//   // client/src/pages/Contact.jsx
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+//   try {
+//     // CHANGE THIS LINE - remove extra /api
+//     await api.post('/contact', form); // ✅ FIXED
+//     setSnackbar({
+//       open: true,
+//       message: 'Thanks! Your message has been received. We will get back to you soon.',
+//       severity: 'success'
+//     });
+//     setForm({ name: '', email: '', phone: '', message: '' });
+//   } catch (error) {
+//     console.error('Contact form error:', error);
+//     setSnackbar({
+//       open: true,
+//       message: 'Sorry, there was an error sending your message. Please try again.',
+//       severity: 'error'
+//     });
+//   }
+// }
+//   const handleCloseSnackbar = () => {
+//     setSnackbar({ ...snackbar, open: false });
+//   };
+
+//   const handleChange = (e) => {
+//     setForm({
+//       ...form,
+//       [e.target.name]: e.target.value
+//     });
+//   };
+
+//   return (
+//     <>
+//       <Helmet>
+//         <title>Contact | Eminence Advice Global Education Experts</title>
+//         <meta
+//           name="description"
+//           content="Get in touch with Eminence Advice Global Education Experts for personalized study abroad guidance, admissions support, and visa assistance. Connect today to start your international education journey."
+//         />
+//       </Helmet>
+
+//       <Box sx={{ py: 10, backgroundColor: "#fff7f0", minHeight: '100vh' }}>
+//         <Container maxWidth="lg">
+//           <Typography
+//             variant="h3"
+//             textAlign="center"
+//             fontWeight="bold"
+//             gutterBottom
+//             sx={{ color: orangeColor }}
+//           >
+//             Get In Touch
+//           </Typography>
+//           <Typography
+//             variant="subtitle1"
+//             textAlign="center"
+//             color="textSecondary"
+//             mb={8}
+//           >
+//             Have questions? Our counselors are ready to assist you.
+//           </Typography>
+
+//           <Grid container spacing={6}>
+//             {/* Contact Info */}
+//             <Grid item xs={12} md={5}>
+//               <Paper
+//                 sx={{
+//                   p: 5,
+//                   borderRadius: 4,
+//                   boxShadow: "0 8px 20px rgba(0,0,0,0.05)",
+//                   borderTop: `4px solid ${orangeColor}`,
+//                   height: 'fit-content'
+//                 }}
+//               >
+//                 <Typography
+//                   variant="h5"
+//                   fontWeight="bold"
+//                   gutterBottom
+//                   sx={{ color: orangeColor }}
+//                 >
+//                   Contact Information
+//                 </Typography>
+
+//                 <Box sx={{ display: "flex", alignItems: "flex-start", mb: 3 }}>
+//                   <LocationOnIcon sx={{ color: orangeColor, mr: 2, mt: 0.5 }} />
+//                   <Typography variant="body1">
+//                     Eminence Advice Pvt. Ltd.<br />
+//                     2nd Floor, Green Plaza, Sector 42,<br />
+//                     Gurugram, Haryana, India
+//                   </Typography>
+//                 </Box>
+
+//                 <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
+//                   <PhoneIcon sx={{ color: orangeColor, mr: 2 }} />
+//                   <Typography variant="body1">+91 98765 43210</Typography>
+//                 </Box>
+
+//                 <Box sx={{ display: "flex", alignItems: "center" }}>
+//                   <EmailIcon sx={{ color: orangeColor, mr: 2 }} />
+//                   <Typography variant="body1">
+//                     info@eminenceadvice.com
+//                   </Typography>
+//                 </Box>
+//               </Paper>
+//             </Grid>
+
+//             {/* Contact Form */}
+//             <Grid item xs={12} md={7}>
+//               <Paper
+//                 sx={{
+//                   p: 5,
+//                   borderRadius: 4,
+//                   boxShadow: "0 8px 20px rgba(0,0,0,0.05)",
+//                   borderTop: `4px solid ${orangeColor}`,
+//                 }}
+//               >
+//                 <Typography
+//                   variant="h5"
+//                   fontWeight="bold"
+//                   gutterBottom
+//                   sx={{ color: orangeColor }}
+//                 >
+//                   Send Us a Message
+//                 </Typography>
+
+//                 <form onSubmit={handleSubmit}>
+//                   <TextField
+//                     fullWidth
+//                     name="name"
+//                     label="Full Name"
+//                     value={form.name}
+//                     onChange={handleChange}
+//                     margin="normal"
+//                     required
+//                     sx={{
+//                       "& label.Mui-focused": { color: orangeColor },
+//                       "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: orangeColor }
+//                     }}
+//                   />
+//                   <TextField
+//                     fullWidth
+//                     name="email"
+//                     type="email"
+//                     label="Email Address"
+//                     value={form.email}
+//                     onChange={handleChange}
+//                     margin="normal"
+//                     required
+//                     sx={{
+//                       "& label.Mui-focused": { color: orangeColor },
+//                       "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: orangeColor }
+//                     }}
+//                   />
+//                   <TextField
+//                     fullWidth
+//                     name="phone"
+//                     label="Phone Number"
+//                     value={form.phone}
+//                     onChange={handleChange}
+//                     margin="normal"
+//                     sx={{
+//                       "& label.Mui-focused": { color: orangeColor },
+//                       "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: orangeColor }
+//                     }}
+//                   />
+//                   <TextField
+//                     fullWidth
+//                     name="message"
+//                     label="Your Message"
+//                     value={form.message}
+//                     onChange={handleChange}
+//                     margin="normal"
+//                     multiline
+//                     rows={4}
+//                     required
+//                     sx={{
+//                       "& label.Mui-focused": { color: orangeColor },
+//                       "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: orangeColor }
+//                     }}
+//                   />
+
+//                   <Button
+//                     type="submit"
+//                     variant="contained"
+//                     sx={{
+//                       mt: 3,
+//                       textTransform: "none",
+//                       borderRadius: "8px",
+//                       backgroundColor: orangeColor,
+//                       "&:hover": { backgroundColor: "#e65c00" },
+//                       px: 4,
+//                       py: 1.5,
+//                       fontSize: '1rem'
+//                     }}
+//                   >
+//                     Submit Message
+//                   </Button>
+//                 </form>
+//               </Paper>
+//             </Grid>
+//           </Grid>
+//         </Container>
+
+//         {/* Success/Error Snackbar */}
+//         <Snackbar
+//           open={snackbar.open}
+//           autoHideDuration={6000}
+//           onClose={handleCloseSnackbar}
+//           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+//         >
+//           <Alert
+//             onClose={handleCloseSnackbar}
+//             severity={snackbar.severity}
+//             sx={{ width: '100%' }}
+//           >
+//             {snackbar.message}
+//           </Alert>
+//         </Snackbar>
+//       </Box>
+//     </>
+//   );
+// }
+
+
 // client/src/pages/Contact.jsx
 import React, { useState } from 'react';
 import {
@@ -185,6 +443,7 @@ export default function Contact() {
     phone: '',
     message: ''
   });
+  const [loading, setLoading] = useState(false);
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: '',
@@ -195,20 +454,35 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    
     try {
-      await api.post('/api/contact', form);
+      console.log('Sending contact form to:', `${process.env.REACT_APP_API_URL}/contact`);
+      
+      const response = await api.post('/contact', form);
+      console.log('Contact form success:', response.data);
+      
       setSnackbar({
         open: true,
         message: 'Thanks! Your message has been received. We will get back to you soon.',
         severity: 'success'
       });
       setForm({ name: '', email: '', phone: '', message: '' });
+      
     } catch (error) {
+      console.error('Contact form error details:', {
+        message: error.message,
+        response: error.response,
+        config: error.config
+      });
+      
       setSnackbar({
         open: true,
-        message: 'Sorry, there was an error sending your message. Please try again.',
+        message: error.response?.data?.message || 'Sorry, there was an error sending your message. Please try again.',
         severity: 'error'
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -325,10 +599,7 @@ export default function Contact() {
                     onChange={handleChange}
                     margin="normal"
                     required
-                    sx={{
-                      "& label.Mui-focused": { color: orangeColor },
-                      "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: orangeColor }
-                    }}
+                    disabled={loading}
                   />
                   <TextField
                     fullWidth
@@ -339,10 +610,7 @@ export default function Contact() {
                     onChange={handleChange}
                     margin="normal"
                     required
-                    sx={{
-                      "& label.Mui-focused": { color: orangeColor },
-                      "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: orangeColor }
-                    }}
+                    disabled={loading}
                   />
                   <TextField
                     fullWidth
@@ -351,10 +619,7 @@ export default function Contact() {
                     value={form.phone}
                     onChange={handleChange}
                     margin="normal"
-                    sx={{
-                      "& label.Mui-focused": { color: orangeColor },
-                      "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: orangeColor }
-                    }}
+                    disabled={loading}
                   />
                   <TextField
                     fullWidth
@@ -366,15 +631,13 @@ export default function Contact() {
                     multiline
                     rows={4}
                     required
-                    sx={{
-                      "& label.Mui-focused": { color: orangeColor },
-                      "& .MuiOutlinedInput-root.Mui-focused fieldset": { borderColor: orangeColor }
-                    }}
+                    disabled={loading}
                   />
 
                   <Button
                     type="submit"
                     variant="contained"
+                    disabled={loading}
                     sx={{
                       mt: 3,
                       textTransform: "none",
@@ -386,7 +649,7 @@ export default function Contact() {
                       fontSize: '1rem'
                     }}
                   >
-                    Submit Message
+                    {loading ? 'Sending...' : 'Submit Message'}
                   </Button>
                 </form>
               </Paper>
