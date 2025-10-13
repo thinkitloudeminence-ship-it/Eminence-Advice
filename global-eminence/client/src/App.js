@@ -15,6 +15,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Blogs from './pages/Blogs';
+import BlogDetail from './pages/BlogDetail';
 import AbroadColleges from './pages/AbroadColleges';
 
 // Admin Pages
@@ -54,6 +55,7 @@ function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blogs" element={<Blogs />} />
+               <Route path="/blogs/:slug" element={<BlogDetail />} />
               <Route path="/colleges" element={<AbroadColleges />} />
 
               {/* Admin Routes */}

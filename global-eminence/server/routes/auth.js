@@ -1,7 +1,9 @@
-const express = require('express');
+// server/routes/auth.js - FIXED ES MODULES
+import express from 'express';
+import { loginAdmin } from '../controllers/authController.js';
+
 const router = express.Router();
-const { loginAdmin } = require('../controllers/authController');
 
 router.post('/login', loginAdmin);
 
-module.exports = router;
+export default router; // ✅ This is the default export
