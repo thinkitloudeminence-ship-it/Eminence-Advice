@@ -340,13 +340,35 @@ const upload = multer({
   }
 });
 
-// Get all blogs (public)
+// Get all blogs (public) - Only published blogs
 router.get('/', async (req, res) => {
+  try {
+    console.log('📖 Fetching all blogs from database...');
+    
+    // Get ONLY published blogs for public route
+    const blogs = await Blog.find({
+      $or: [
+        { status: 'published' },
+        { isPublished: true }
+      ]
+    }).sort({ createdAt: -1 });
+    
+    console.log(`✅ Found ${blogs.length} published blogs`);
+    
+    res.json(blogs);
+  } catch (err) {
+    console.error('❌ Get blogs error:', err);
+    res.status(500).json({ message: 'Server error while fetching blogs' });
+  }
+});
+
+// Get all blogs for admin (including drafts)
+router.get('/admin/all', protect, async (req, res) => {
   try {
     const blogs = await Blog.find().sort({ createdAt: -1 });
     res.json(blogs);
   } catch (err) {
-    console.error('Get blogs error:', err);
+    console.error('Admin get blogs error:', err);
     res.status(500).json({ message: 'Server error while fetching blogs' });
   }
 });
