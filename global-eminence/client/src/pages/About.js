@@ -43,7 +43,7 @@ export default function About() {
               variant="h3"
               fontWeight="bold"
               gutterBottom
-              sx={{ color: "#ec4c0cf1" }}
+              sx={{ color: "#FF6600" }}
             >
               Empowering Global Education Dreams
             </Typography>
@@ -178,49 +178,6 @@ export default function About() {
                 </Typography>
               </Card>
             ))}
-          </Box>
-        </Container>
-      </Box>
-
-      {/* Final CTA */}
-      <Box sx={{ py: 14, textAlign: "center", backgroundColor: "#f9fbff" }}>
-        <Container maxWidth="sm">
-          <Box
-            sx={{
-              p: { xs: 3, md: 6 },
-              backgroundColor: "#fff",
-              borderRadius: 3,
-              boxShadow: 6,
-            }}
-          >
-            <Typography
-              variant="h4"
-              fontWeight="bold"
-              gutterBottom
-              sx={{ color: "#FF6600", mb: 3 }}
-            >
-              Start Your Global Journey with Us
-            </Typography>
-            <Typography variant="body1" color="textSecondary" paragraph>
-              Ready to make your study abroad dream a reality? Our expert counselors guide you through every step — from selecting the perfect university to securing visa approval — ensuring your journey is smooth, confident, and successful.
-            </Typography>
-            <Button
-              variant="contained"
-              sx={{
-                mt: 2,
-                px: 6,
-                py: 1.5,
-                fontSize: "1.15rem",
-                borderRadius: "12px",
-                textTransform: "none",
-                backgroundColor: "#FF6600",
-                color: "#fff",
-                "&:hover": { backgroundColor: "#ff8533" },
-              }}
-              endIcon={<ArrowForwardIcon />}
-            >
-              Book a Free Consultation
-            </Button>
           </Box>
         </Container>
       </Box>

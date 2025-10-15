@@ -65,12 +65,12 @@
 //       try {
 //         setLoading(true);
 //         const { data } = await axios.get('/blogs');
-        
+
 //         // Filter only published blogs
 //         const publishedBlogs = data.filter(blog => 
 //           blog.status === 'published' || blog.isPublished === true
 //         );
-        
+
 //         setBlogs(publishedBlogs);
 //       } catch (err) {
 //         console.error('Error fetching blogs:', err);
@@ -156,7 +156,7 @@
 //                     >
 //                       {blog.title}
 //                     </Typography>
-                    
+
 //                     <Typography 
 //                       variant="body2" 
 //                       color="textSecondary" 
@@ -255,26 +255,26 @@
 //       try {
 //         setLoading(true);
 //         console.log('📡 Fetching blogs from API...');
-        
+
 //         const { data } = await axios.get('/blogs');
 //         console.log('✅ All blogs from API:', data);
-        
+
 //         setAllBlogs(data); // Store all blogs for debugging
-        
+
 //         // ✅ IMPROVED FILTERING LOGIC
 //         const publishedBlogs = data.filter(blog => {
 //           const isPublished = 
 //             blog.status === 'published' || 
 //             blog.isPublished === true ||
 //             (blog.status === undefined && blog.isPublished === undefined); // Show if no status field
-          
+
 //           console.log(`Blog: ${blog.title}, Status: ${blog.status}, isPublished: ${blog.isPublished}, Show: ${isPublished}`);
 //           return isPublished;
 //         });
-        
+
 //         console.log('📝 Published blogs after filtering:', publishedBlogs);
 //         setBlogs(publishedBlogs);
-        
+
 //       } catch (err) {
 //         console.error('❌ Error fetching blogs:', err);
 //         setError('Failed to load blogs. Please try again later.');
@@ -396,7 +396,7 @@
 //                       </Typography>
 //                     </Box>
 //                   )}
-                  
+
 //                   <CardContent sx={{ flexGrow: 1, p: 2 }}>
 //                     <Typography 
 //                       variant="h6" 
@@ -414,7 +414,7 @@
 //                     >
 //                       {blog.title}
 //                     </Typography>
-                    
+
 //                     <Box sx={{ mb: 1, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
 //                       {blog.category && (
 //                         <Chip 
@@ -474,13 +474,13 @@
 
 // client/src/pages/Blogs.jsx - UPDATED
 import React, { useEffect, useState } from 'react';
-import { 
-  Container, 
-  Grid, 
-  Card, 
-  CardMedia, 
-  CardContent, 
-  Typography, 
+import {
+  Container,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
   CardActionArea,
   Box,
   CircularProgress,
@@ -503,25 +503,25 @@ export default function Blogs() {
       try {
         setLoading(true);
         console.log('📡 Fetching blogs from API...');
-        
+
         const { data } = await axios.get('/blogs');
         console.log('✅ All blogs from API:', data);
-        
+
         setAllBlogs(data);
-        
+
         const publishedBlogs = data.filter(blog => {
-          const isPublished = 
-            blog.status === 'published' || 
+          const isPublished =
+            blog.status === 'published' ||
             blog.isPublished === true ||
             (blog.status === undefined && blog.isPublished === undefined);
-          
+
           console.log(`Blog: ${blog.title}, Status: ${blog.status}, isPublished: ${blog.isPublished}, Show: ${isPublished}`);
           return isPublished;
         });
-        
+
         console.log('📝 Published blogs after filtering:', publishedBlogs);
         setBlogs(publishedBlogs);
-        
+
       } catch (err) {
         console.error('❌ Error fetching blogs:', err);
         setError('Failed to load blogs. Please try again later.');
@@ -565,16 +565,16 @@ export default function Blogs() {
             Check if blogs have status: 'published' or isPublished: true in database.
           </Typography>
           <Box sx={{ mt: 2 }}>
-            <Chip 
-              label={`Total blogs in DB: ${allBlogs.length}`} 
-              color="primary" 
-              variant="outlined" 
+            <Chip
+              label={`Total blogs in DB: ${allBlogs.length}`}
+              color="primary"
+              variant="outlined"
             />
             {allBlogs.length > 0 && (
-              <Chip 
-                label="⚠️ Blogs exist but not published" 
-                color="warning" 
-                variant="outlined" 
+              <Chip
+                label="⚠️ Blogs exist but not published"
+                color="warning"
+                variant="outlined"
                 sx={{ ml: 1 }}
               />
             )}
@@ -584,9 +584,9 @@ export default function Blogs() {
         <Grid container spacing={3}>
           {blogs.map(blog => (
             <Grid item xs={12} sm={6} md={4} key={blog._id}>
-              <Card sx={{ 
-                height: '100%', 
-                display: 'flex', 
+              <Card sx={{
+                height: '100%',
+                display: 'flex',
                 flexDirection: 'column',
                 transition: 'transform 0.2s, box-shadow 0.2s',
                 '&:hover': {
@@ -594,12 +594,12 @@ export default function Blogs() {
                   boxShadow: 6
                 }
               }}>
-                <CardActionArea 
+                <CardActionArea
                   onClick={() => navigate(`/blogs/${blog.slug}`)}
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
                 >
                   {blog.featuredImage ? (
-                    <CardMedia 
+                    <CardMedia
                       component="img"
                       height="200"
                       image={getImageUrl(blog.featuredImage)} // ✅ UPDATED
@@ -611,13 +611,13 @@ export default function Blogs() {
                       }}
                     />
                   ) : (
-                    <Box 
-                      sx={{ 
-                        height: 200, 
-                        backgroundColor: '#f0f0f0', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center' 
+                    <Box
+                      sx={{
+                        height: 200,
+                        backgroundColor: '#f0f0f0',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
                       }}
                     >
                       <Typography variant="body2" color="textSecondary">
@@ -625,13 +625,13 @@ export default function Blogs() {
                       </Typography>
                     </Box>
                   )}
-                  
+
                   <CardContent sx={{ flexGrow: 1, p: 2 }}>
-                    <Typography 
-                      variant="h6" 
-                      component="h2" 
+                    <Typography
+                      variant="h6"
+                      component="h2"
                       gutterBottom
-                      sx={{ 
+                      sx={{
                         fontSize: '1.1rem',
                         fontWeight: 'bold',
                         lineHeight: 1.3,
@@ -643,14 +643,14 @@ export default function Blogs() {
                     >
                       {blog.title}
                     </Typography>
-                    
+
                     <Box sx={{ mb: 1, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                       {blog.category && (
-                        <Chip 
+                        <Chip
                           label={blog.category.replace(/-/g, ' ')}
                           size="small"
-                          sx={{ 
-                            backgroundColor: '#FF6600', 
+                          sx={{
+                            backgroundColor: '#FF6600',
                             color: 'white',
                             textTransform: 'capitalize',
                             fontSize: '0.7rem'
@@ -662,8 +662,8 @@ export default function Blogs() {
                       </Typography>
                     </Box>
 
-                    <Typography 
-                      variant="body2" 
+                    <Typography
+                      variant="body2"
                       color="text.secondary"
                       sx={{
                         display: '-webkit-box',
