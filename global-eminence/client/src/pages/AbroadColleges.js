@@ -1094,16 +1094,6 @@ export default function AbroadColleges() {
               </Card>
             ))}
           </Box>
-
-          {/* <Box textAlign="center" mt={6}>
-            <Typography
-              variant="body1"
-              color="textSecondary"
-              sx={{ fontStyle: 'italic' }}
-            >
-              Showing {colleges.length} top universities from around the globe
-            </Typography>
-          </Box> */}
         </Container>
       </Box>
     </>

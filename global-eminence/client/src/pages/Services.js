@@ -1249,49 +1249,57 @@ export default function Services() {
       icon: <SchoolIcon sx={{ fontSize: 50, color: orangeColor }} />,
       title: "Career & University Counseling",
       text: "Personalized guidance to help you choose the ideal course, university, and country aligned with your academic goals and budget. Our experts analyze your profile to recommend the best-fit options.",
-      features: ["Profile Assessment", "University Shortlisting", "Career Pathway Planning"]
-    },
-    {
-      icon: <GTranslateIcon sx={{ fontSize: 50, color: orangeColor }} />,
-      title: "Test Preparation",
-      text: "Expert training for IELTS, TOEFL, PTE, GRE, GMAT, and SAT — helping you achieve your target scores with confidence through customized study plans and mock tests.",
-      features: ["Customized Study Plans", "Mock Tests", "Score Improvement Guarantee"]
-    },
-    {
-      icon: <AssignmentIcon sx={{ fontSize: 50, color: orangeColor }} />,
-      title: "Application Processing",
-      text: "End-to-end support for university applications including document preparation, essay editing, recommendation letters, and submission tracking.",
-      features: ["Document Preparation", "Essay Editing", "Application Tracking"]
-    },
-    {
-      icon: <WorkspacePremiumIcon sx={{ fontSize: 50, color: orangeColor }} />,
-      title: "Scholarship & Financial Aid Assistance",
-      text: "We help you identify and apply for the best scholarships, grants, and financial support to make studying abroad affordable. Maximize your funding opportunities.",
-      features: ["Scholarship Search", "Application Support", "Financial Planning"]
-    },
-    {
-      icon: <DescriptionIcon sx={{ fontSize: 50, color: orangeColor }} />,
-      title: "Documentation & SOP Assistance",
-      text: "Professional help with Statement of Purpose (SOP), Letters of Recommendation (LOR), and all required documentation to make your application stand out.",
-      features: ["SOP Writing", "LOR Preparation", "Document Review"]
-    },
-    {
-      icon: <ConnectWithoutContactIcon sx={{ fontSize: 50, color: orangeColor }} />,
-      title: "Interview Preparation",
-      text: "Comprehensive coaching for university and scholarship interviews with mock sessions and personalized feedback.",
-      features: ["Mock Interviews", "Feedback Sessions", "Confidence Building"]
+      features: ["Profile Assessment", "University Shortlisting", "Career Pathway Planning"],
+      background: "https://www.elysianinspires.com/wp-content/uploads/2019/02/blog7.jpg"
     },
     {
       icon: <LibraryBooksIcon sx={{ fontSize: 50, color: orangeColor }} />,
       title: "Course & Country Research",
       text: "In-depth research on courses, universities, and countries to help you make informed decisions about your study abroad journey.",
-      features: ["Market Research", "University Analysis", "Course Comparison"]
+      features: ["Market Research", "University Analysis", "Course Comparison"],
+      background: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&w=400&h=200&fit=crop"
+    },
+    {
+      icon: <GTranslateIcon sx={{ fontSize: 50, color: orangeColor }} />,
+      title: "Test Preparation",
+      text: "Expert training for IELTS, TOEFL, PTE, GRE, GMAT, and SAT — helping you achieve your target scores with confidence through customized study plans and mock tests.",
+      features: ["Customized Study Plans", "Mock Tests", "Score Improvement Guarantee"],
+      background: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&w=400&h=200&fit=crop"
+    },
+    {
+      icon: <AssignmentIcon sx={{ fontSize: 50, color: orangeColor }} />,
+      title: "Application Processing",
+      text: "End-to-end support for university applications including document preparation, essay editing, recommendation letters, and submission tracking.",
+      features: ["Document Preparation", "Essay Editing", "Application Tracking"],
+      background: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&w=400&h=200&fit=crop"
+    },
+    {
+      icon: <DescriptionIcon sx={{ fontSize: 50, color: orangeColor }} />,
+      title: "Documentation & SOP Assistance",
+      text: "Professional help with Statement of Purpose (SOP), Letters of Recommendation (LOR), and all required documentation to make your application stand out.",
+      features: ["SOP Writing", "LOR Preparation", "Document Review"],
+      background: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&w=400&h=200&fit=crop"
+    },
+    {
+      icon: <ConnectWithoutContactIcon sx={{ fontSize: 50, color: orangeColor }} />,
+      title: "Interview Preparation",
+      text: "Comprehensive coaching for university and scholarship interviews with mock sessions and personalized feedback.",
+      features: ["Mock Interviews", "Feedback Sessions", "Confidence Building"],
+      background: "https://resources.workable.com/wp-content/uploads/2018/05/prepare-interviews-featured.png"
+    },
+    {
+      icon: <WorkspacePremiumIcon sx={{ fontSize: 50, color: orangeColor }} />,
+      title: "Scholarship & Financial Aid Assistance",
+      text: "We help you identify and apply for the best scholarships, grants, and financial support to make studying abroad affordable. Maximize your funding opportunities.",
+      features: ["Scholarship Search", "Application Support", "Financial Planning"],
+      background: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&w=400&h=200&fit=crop"
     },
     {
       icon: <SupportAgentIcon sx={{ fontSize: 50, color: orangeColor }} />,
       title: "24/7 Student Support",
       text: "Round-the-clock support for all your queries and concerns throughout your study abroad journey.",
-      features: ["Dedicated Counselor", "Emergency Support", "Quick Response"]
+      features: ["Dedicated Counselor", "Emergency Support", "Quick Response"],
+      background: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&w=400&h=200&fit=crop"
     }
   ];
 
@@ -1299,32 +1307,44 @@ export default function Services() {
     {
       step: "01",
       title: "Initial Consultation",
-      description: "Free profile assessment and career counseling session"
+      description: "Free profile assessment and career counseling session",
+      background: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=200&fit=crop",
+      icon: <ContactSupportIcon sx={{ fontSize: 30, color: 'white' }} />
     },
     {
       step: "02",
       title: "University Shortlisting",
-      description: "Personalized university recommendations based on your profile"
+      description: "Personalized university recommendations based on your profile",
+      background: "https://images.unsplash.com/photo-1562813733-b31f71025d54?w=400&h=200&fit=crop",
+      icon: <SchoolIcon sx={{ fontSize: 30, color: 'white' }} />
     },
     {
       step: "03",
       title: "Test Preparation",
-      description: "Customized coaching for required entrance exams"
+      description: "Customized coaching for required entrance exams",
+      background: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=200&fit=crop",
+      icon: <GTranslateIcon sx={{ fontSize: 30, color: 'white' }} />
     },
     {
       step: "04",
       title: "Application & Documentation",
-      description: "Complete application processing and document preparation"
+      description: "Complete application processing and document preparation",
+      background: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=200&fit=crop",
+      icon: <DescriptionIcon sx={{ fontSize: 30, color: 'white' }} />
     },
     {
       step: "05",
       title: "Admission & Visa",
-      description: "Admission processing and visa application support"
+      description: "Admission processing and visa application support",
+      background: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=200&fit=crop",
+      icon: <WorkspacePremiumIcon sx={{ fontSize: 30, color: 'white' }} />
     },
     {
       step: "06",
       title: "Pre-Departure & Beyond",
-      description: "Travel preparation and post-arrival assistance"
+      description: "Travel preparation and post-arrival assistance",
+      background: "https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=400&h=200&fit=crop",
+      icon: <FlightTakeoffIcon sx={{ fontSize: 30, color: 'white' }} />
     }
   ];
 
@@ -1414,41 +1434,79 @@ export default function Services() {
                 elevation={3}
                 sx={{
                   borderRadius: 3,
-                  p: 2,
+                  p: 0,
                   width: {
                     xs: '100%',
                     sm: 'calc(50% - 12px)',
                     md: 'calc(25% - 16px)' // 4 cards per row on medium+ screens
                   },
-                  maxWidth: { md: 280 }, // Reduced max width
-                  height: 320, // Fixed height for consistency
+                  maxWidth: { md: 280 },
+                  height: 380,
                   display: 'flex',
                   flexDirection: 'column',
                   transition: "transform 0.3s, box-shadow 0.3s",
+                  overflow: 'hidden',
+                  position: 'relative',
                   "&:hover": {
                     transform: "translateY(-6px)",
-                    boxShadow: `0 8px 20px ${orangeColor}20`
+                    boxShadow: `0 8px 20px ${orangeColor}40`
                   },
                 }}
               >
+                {/* Background Image with Gradient Overlay */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 120,
+                    background: `linear-gradient(135deg, ${orangeColor}20, ${orangeColor}40), url(${service.background})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    zIndex: 0,
+                  }}
+                />
+
                 <CardContent sx={{
                   flexGrow: 1,
                   textAlign: "center",
                   p: 2,
+                  position: 'relative',
+                  zIndex: 1,
                   '&:last-child': { pb: 2 }
                 }}>
-                  {service.icon}
+                  {/* Icon with Background */}
+                  <Box
+                    sx={{
+                      width: 80,
+                      height: 80,
+                      borderRadius: '50%',
+                      backgroundColor: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 16px',
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                      border: `2px solid ${orangeColor}`
+                    }}
+                  >
+                    {service.icon}
+                  </Box>
+
                   <Typography
                     variant="h6"
                     fontWeight="bold"
                     gutterBottom
                     sx={{
-                      mt: 1.5,
+                      mt: 1,
                       fontSize: { xs: '1rem', md: '1.1rem' },
                       minHeight: '3em',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      color: '#333'
                     }}
                   >
                     {service.title}
@@ -1462,7 +1520,8 @@ export default function Services() {
                       display: '-webkit-box',
                       WebkitLineClamp: 3,
                       WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden'
+                      overflow: 'hidden',
+                      lineHeight: 1.5
                     }}
                   >
                     {service.text}
@@ -1476,7 +1535,9 @@ export default function Services() {
                           display: 'flex',
                           alignItems: 'center',
                           mb: 0.5,
-                          fontSize: '0.75rem'
+                          fontSize: '0.75rem',
+                          fontWeight: '500',
+                          color: '#555'
                         }}
                       >
                         <AutoAwesomeIcon sx={{ fontSize: 14, color: orangeColor, mr: 0.5 }} />
@@ -1492,77 +1553,148 @@ export default function Services() {
       </Box>
 
       {/* Process Section */}
-      <Box sx={{ py: 8, backgroundColor: "#f8f9fa" }}>
-        <Container maxWidth="xl">
-          <Typography
-            variant="h3"
-            textAlign="center"
-            fontWeight="bold"
-            gutterBottom
-          >
-            Our 6-Step Success Process
-          </Typography>
-          <Typography
-            variant="h6"
-            textAlign="center"
-            color="textSecondary"
-            sx={{ maxWidth: '800px', margin: '0 auto', mb: 6 }}
-          >
-            A structured approach to ensure your study abroad success
-          </Typography>
+     <Box sx={{ py: 8, backgroundColor: "#f8f9fa" }}>
+  <Container maxWidth="xl">
+    <Typography
+      variant="h3"
+      textAlign="center"
+      fontWeight="bold"
+      gutterBottom
+    >
+      Our 6-Step Success Process
+    </Typography>
+    <Typography
+      variant="h6"
+      textAlign="center"
+      color="textSecondary"
+      sx={{ maxWidth: '800px', margin: '0 auto', mb: 6 }}
+    >
+      A structured approach to ensure your study abroad success
+    </Typography>
 
+    <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 4,
+        justifyContent: 'center'
+      }}
+    >
+      {processSteps.map((step, index) => (
+        <Box
+          key={index}
+          sx={{
+            textAlign: 'center',
+            p: 0,
+            borderRadius: 3,
+            backgroundColor: 'white',
+            boxShadow: 2,
+            width: { xs: '100%', sm: 'calc(50% - 16px)', md: 'calc(33.33% - 22px)' },
+            maxWidth: { md: 400 },
+            height: 300,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            overflow: 'hidden',
+            position: 'relative',
+            transition: "transform 0.3s, box-shadow 0.3s",
+            "&:hover": {
+              transform: "translateY(-6px)",
+              boxShadow: `0 8px 25px ${orangeColor}30`
+            },
+          }}
+        >
+          {/* Background Image with Gradient Overlay */}
           <Box
             sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 4,
-              justifyContent: 'center'
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: 140,
+              background: `linear-gradient(135deg, ${orangeColor}50, ${orangeColor}70), url(${step.background})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              zIndex: 0,
+            }}
+          />
+          
+          {/* Icon in Background */}
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 20,
+              right: 20,
+              zIndex: 1,
             }}
           >
-            {processSteps.map((step, index) => (
-              <Box
-                key={index}
-                sx={{
-                  textAlign: 'center',
-                  p: 3,
-                  borderRadius: 3,
-                  backgroundColor: 'white',
-                  boxShadow: 2,
-                  width: { xs: '100%', sm: 'calc(50% - 16px)', md: 'calc(33.33% - 22px)' },
-                  maxWidth: { md: 400 },
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center'
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: '50%',
-                    backgroundColor: orangeColor,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'white',
-                    fontSize: '1.5rem',
-                    fontWeight: 'bold',
-                    mb: 2
-                  }}
-                >
-                  {step.step}
-                </Box>
-                <Typography variant="h5" fontWeight="bold" gutterBottom>
-                  {step.title}
-                </Typography>
-                <Typography variant="body1" color="textSecondary">
-                  {step.description}
-                </Typography>
-              </Box>
-            ))}
+            {step.icon}
           </Box>
-        </Container>
-      </Box>
+          
+          {/* Content */}
+          <Box
+            sx={{
+              position: 'relative',
+              zIndex: 1,
+              p: 3,
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              mt: 4
+            }}
+          >
+            {/* Step Number with Enhanced Design */}
+            <Box
+              sx={{
+                width: 70,
+                height: 70,
+                borderRadius: '50%',
+                backgroundColor: 'white',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: orangeColor,
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                mb: 2,
+                boxShadow: '0 4px 15px rgba(255, 102, 0, 0.3)',
+                border: `3px solid ${orangeColor}`
+              }}
+            >
+              {step.step}
+            </Box>
+            
+            <Typography 
+              variant="h5" 
+              fontWeight="bold" 
+              gutterBottom
+              sx={{ 
+                color: '#333',
+                fontSize: { xs: '1.25rem', md: '1.5rem' }
+              }}
+            >
+              {step.title}
+            </Typography>
+            <Typography 
+              variant="body1" 
+              color="textSecondary"
+              sx={{ 
+                lineHeight: 1.6,
+                fontSize: { xs: '0.9rem', md: '1rem' }
+              }}
+            >
+              {step.description}
+            </Typography>
+          </Box>
+        </Box>
+      ))}
+    </Box>
+  </Container>
+</Box>
 
       {/* CTA Section */}
       <Box sx={{ py: 8, backgroundColor: whiteColor }}>
