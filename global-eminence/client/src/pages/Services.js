@@ -1276,40 +1276,16 @@ export default function Services() {
       features: ["SOP Writing", "LOR Preparation", "Document Review"]
     },
     {
-      icon: <FlightTakeoffIcon sx={{ fontSize: 50, color: orangeColor }} />,
-      title: "Visa & Pre-Departure Support",
-      text: "From documentation to mock visa interviews and travel guidance — we ensure a smooth transition to your dream destination with comprehensive pre-departure briefings.",
-      features: ["Visa Documentation", "Mock Interviews", "Travel Guidance"]
-    },
-    {
-      icon: <ContactSupportIcon sx={{ fontSize: 50, color: orangeColor }} />,
-      title: "Post-Arrival Assistance",
-      text: "Continuous support after you reach your destination including airport pickup, accommodation help, bank account setup, and local orientation.",
-      features: ["Airport Pickup", "Accommodation", "Local Setup"]
-    },
-    {
-      icon: <GroupsIcon sx={{ fontSize: 50, color: orangeColor }} />,
-      title: "Student Mentorship Program",
-      text: "Connect with current international students and alumni for firsthand insights and guidance about university life and cultural adaptation.",
-      features: ["Alumni Network", "Peer Mentoring", "Cultural Integration"]
+      icon: <ConnectWithoutContactIcon sx={{ fontSize: 50, color: orangeColor }} />,
+      title: "Interview Preparation",
+      text: "Comprehensive coaching for university and scholarship interviews with mock sessions and personalized feedback.",
+      features: ["Mock Interviews", "Feedback Sessions", "Confidence Building"]
     },
     {
       icon: <LibraryBooksIcon sx={{ fontSize: 50, color: orangeColor }} />,
       title: "Course & Country Research",
       text: "In-depth research on courses, universities, and countries to help you make informed decisions about your study abroad journey.",
       features: ["Market Research", "University Analysis", "Course Comparison"]
-    },
-    {
-      icon: <ApartmentIcon sx={{ fontSize: 50, color: orangeColor }} />,
-      title: "University Partnership Access",
-      text: "Direct access to our partner universities worldwide with faster processing times and exclusive application benefits.",
-      features: ["Direct Admissions", "Fast-track Processing", "Exclusive Offers"]
-    },
-    {
-      icon: <ConnectWithoutContactIcon sx={{ fontSize: 50, color: orangeColor }} />,
-      title: "Interview Preparation",
-      text: "Comprehensive coaching for university and scholarship interviews with mock sessions and personalized feedback.",
-      features: ["Mock Interviews", "Feedback Sessions", "Confidence Building"]
     },
     {
       icon: <SupportAgentIcon sx={{ fontSize: 50, color: orangeColor }} />,
@@ -1428,7 +1404,7 @@ export default function Services() {
             sx={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: 4,
+              gap: 3,
               justifyContent: 'center'
             }}
           >
@@ -1438,30 +1414,72 @@ export default function Services() {
                 elevation={3}
                 sx={{
                   borderRadius: 3,
-                  p: 3,
-                  width: { xs: '100%', sm: 'calc(50% - 16px)', md: 'calc(33.33% - 22px)' },
-                  maxWidth: { md: 400 },
+                  p: 2,
+                  width: {
+                    xs: '100%',
+                    sm: 'calc(50% - 12px)',
+                    md: 'calc(25% - 16px)' // 4 cards per row on medium+ screens
+                  },
+                  maxWidth: { md: 280 }, // Reduced max width
+                  height: 320, // Fixed height for consistency
                   display: 'flex',
                   flexDirection: 'column',
                   transition: "transform 0.3s, box-shadow 0.3s",
                   "&:hover": {
-                    transform: "translateY(-8px)",
-                    boxShadow: `0 12px 25px ${orangeColor}25`
+                    transform: "translateY(-6px)",
+                    boxShadow: `0 8px 20px ${orangeColor}20`
                   },
                 }}
               >
-                <CardContent sx={{ flexGrow: 1, textAlign: "center" }}>
+                <CardContent sx={{
+                  flexGrow: 1,
+                  textAlign: "center",
+                  p: 2,
+                  '&:last-child': { pb: 2 }
+                }}>
                   {service.icon}
-                  <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ mt: 2 }}>
+                  <Typography
+                    variant="h6"
+                    fontWeight="bold"
+                    gutterBottom
+                    sx={{
+                      mt: 1.5,
+                      fontSize: { xs: '1rem', md: '1.1rem' },
+                      minHeight: '3em',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
                     {service.title}
                   </Typography>
-                  <Typography variant="body1" color="textSecondary" sx={{ mb: 3 }}>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    sx={{
+                      mb: 2,
+                      fontSize: '0.875rem',
+                      display: '-webkit-box',
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden'
+                    }}
+                  >
                     {service.text}
                   </Typography>
                   <Box sx={{ textAlign: 'left' }}>
                     {service.features.map((feature, idx) => (
-                      <Typography key={idx} variant="body2" sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                        <AutoAwesomeIcon sx={{ fontSize: 16, color: orangeColor, mr: 1 }} />
+                      <Typography
+                        key={idx}
+                        variant="caption"
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          mb: 0.5,
+                          fontSize: '0.75rem'
+                        }}
+                      >
+                        <AutoAwesomeIcon sx={{ fontSize: 14, color: orangeColor, mr: 0.5 }} />
                         {feature}
                       </Typography>
                     ))}
