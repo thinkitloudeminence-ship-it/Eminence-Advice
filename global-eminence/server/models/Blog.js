@@ -1,28 +1,28 @@
 import mongoose from 'mongoose';
 
 const blogSchema = new mongoose.Schema({
-  title: { 
-    type: String, 
-    required: true 
+  title: {
+    type: String,
+    required: true
   },
-  slug: { 
-    type: String, 
+  slug: {
+    type: String,
     unique: true,
     required: true
   },
-  content: { 
-    type: String, 
-    required: true 
+  content: {
+    type: String,
+    required: true
   },
-  category: { 
+  category: {
     type: String,
     default: 'study-abroad'
   },
-  tags: [{ 
-    type: String 
+  tags: [{
+    type: String
   }], // ✅ Changed to array
-  featuredImage: { 
-    type: String 
+  featuredImage: {
+    type: String
   },
   isPublished: { // ✅ Use isPublished instead of status
     type: Boolean,
@@ -33,18 +33,18 @@ const blogSchema = new mongoose.Schema({
     enum: ['draft', 'published'],
     default: 'draft'
   },
-  createdAt: { 
-    type: Date, 
-    default: Date.now 
+  createdAt: {
+    type: Date,
+    default: Date.now
   },
-  updatedAt: { 
-    type: Date, 
-    default: Date.now 
+  updatedAt: {
+    type: Date,
+    default: Date.now
   }
 });
 
 // Update updatedAt before saving
-blogSchema.pre('save', function(next) {
+blogSchema.pre('save', function (next) {
   this.updatedAt = Date.now();
   next();
 });

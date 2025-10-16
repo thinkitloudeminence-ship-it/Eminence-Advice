@@ -8,6 +8,7 @@ import { Box } from '@mui/material';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
+import ParticleBackground from './components/ParticleBackground';
 
 // Public Pages
 import Home from './pages/Home';
@@ -17,6 +18,7 @@ import Contact from './pages/Contact';
 import Blogs from './pages/Blogs';
 import BlogDetail from './pages/BlogDetail';
 import AbroadColleges from './pages/AbroadColleges';
+
 
 // Admin Pages
 import AdminLogin from './pages/admin/AdminLogin';
@@ -44,6 +46,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+
+      <ParticleBackground />
       <Router>
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Navbar />
@@ -55,7 +59,7 @@ function App() {
               <Route path="/services" element={<Services />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/blogs" element={<Blogs />} />
-               <Route path="/blogs/:slug" element={<BlogDetail />} />
+              <Route path="/blogs/:slug" element={<BlogDetail />} />
               <Route path="/colleges" element={<AbroadColleges />} />
 
               {/* Admin Routes */}

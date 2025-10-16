@@ -1573,14 +1573,14 @@ export default function BlogEditor() {
       try {
         setLoading(true);
         console.log("🔍 Fetching blog with ID:", id);
-        
+
         const token = getToken();
         if (!token) return;
 
         const { data } = await axios.get(`/blogs/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
-        
+
         console.log("✅ Blog data received:", data);
         setTitle(data.title || "");
         setSlug(data.slug || "");
@@ -1648,14 +1648,20 @@ export default function BlogEditor() {
     setSuccess("");
     setLoading(true);
 
-    // Validation
+    // Enhanced validation
     if (!title.trim() || !slug.trim() || !content.trim()) {
       setError("Title, slug, and content are required");
       setLoading(false);
       return;
     }
 
-    // ✅ Get token with validation
+    // Slug validation
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+      setError("Slug can only contain lowercase letters, numbers, and hyphens");
+      setLoading(false);
+      return;
+    }
+
     const token = getToken();
     if (!token) {
       setLoading(false);
@@ -1671,60 +1677,78 @@ export default function BlogEditor() {
       formData.append("content", content);
       formData.append("status", status);
       formData.append("isPublished", status === "published");
-      
+
+      // Log form data for debugging
+      console.log('📤 Form Data:', {
+        title,
+        slug,
+        category,
+        tags,
+        status,
+        hasFeaturedImage: !!featuredFile
+      });
+
       if (featuredFile) {
         formData.append("featuredImage", featuredFile);
+        console.log('📷 Featured image:', featuredFile.name, featuredFile.size);
       }
 
-      console.log('📤 Sending blog data with token...');
-      console.log('🔐 Token exists:', !!token);
-
       let response;
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+        timeout: 30000, // 30 second timeout
+      };
+
       if (id) {
-        // ✅ UPDATE BLOG
-        response = await axios.put(`/blogs/${id}`, formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        console.log(`🔄 Updating blog ${id}...`);
+        response = await axios.put(`/blogs/${id}`, formData, config);
         setSuccess("✅ Blog updated successfully!");
       } else {
-        // ✅ CREATE NEW BLOG
-        response = await axios.post("/blogs", formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        console.log('🆕 Creating new blog...');
+        response = await axios.post("/blogs", formData, config);
         setSuccess("✅ Blog created successfully!");
       }
 
       console.log("✅ Blog save response:", response.data);
 
-      // Redirect after success
       setTimeout(() => {
         navigate("/admin/dashboard");
       }, 2000);
 
     } catch (err) {
       console.error("❌ Save error details:", err);
-      
-      if (err.response?.status === 401) {
+
+      // Enhanced error handling
+      if (err.code === 'ERR_NETWORK') {
+        setError("❌ Network error. Please check your connection.");
+      } else if (err.response?.status === 401) {
         setError("❌ Session expired! Please login again.");
         localStorage.removeItem('adminToken');
         setTimeout(() => navigate('/admin/login'), 2000);
+      } else if (err.response?.status === 500) {
+        // Get more details from server response
+        const serverError = err.response?.data;
+        console.error('🔍 Server error details:', serverError);
+
+        if (typeof serverError === 'string' && serverError.includes('html')) {
+          setError("❌ Server error: Please check backend logs for details");
+        } else {
+          setError(`❌ Server error: ${serverError?.message || serverError?.error || 'Internal server error'}`);
+        }
       } else {
-        const errorMessage = err.response?.data?.message || 
-                            err.response?.data?.error || 
-                            "Failed to save blog. Please try again.";
+        const errorMessage = err.response?.data?.message ||
+          err.response?.data?.error ||
+          err.message ||
+          "Failed to save blog. Please try again.";
         setError(`❌ ${errorMessage}`);
       }
     } finally {
       setLoading(false);
     }
   };
-
   if (loading && id) {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>

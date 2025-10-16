@@ -115,7 +115,7 @@
 //   origin: function (origin, callback) {
 //     // Allow requests with no origin (like mobile apps or curl requests)
 //     if (!origin) return callback(null, true);
-    
+
 //     if (allowedOrigins.indexOf(origin) === -1) {
 //       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
 //       return callback(new Error(msg), false);
@@ -217,8 +217,8 @@ app.use('/api/contact', contactRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
+  res.json({
+    status: 'OK',
     message: 'Server is running',
     environment: process.env.NODE_ENV || 'development',
     timestamp: new Date().toISOString()
@@ -227,7 +227,7 @@ app.get('/api/health', (req, res) => {
 
 // Root endpoint
 app.get('/', (req, res) => {
-  res.json({ 
+  res.json({
     message: 'Global Eminence API Server',
     version: '1.0.0',
     environment: process.env.NODE_ENV || 'development'

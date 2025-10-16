@@ -105,14 +105,14 @@
 //   try {
 //     // If admin is authenticated, show all blogs including drafts
 //     const showAll = req.headers.authorization ? true : false;
-    
+
 //     let blogs;
 //     if (showAll) {
 //       blogs = await Blog.find().sort({ createdAt: -1 });
 //     } else {
 //       blogs = await Blog.find({ status: 'published' }).sort({ createdAt: -1 });
 //     }
-    
+
 //     res.json(blogs);
 //   } catch (err) {
 //     console.error('Get blogs error:', err);
@@ -127,12 +127,12 @@
 //     if (!blog) {
 //       return res.status(404).json({ message: 'Blog not found' });
 //     }
-    
+
 //     // Only return published blogs to public, admins can see drafts
 //     if (blog.status !== 'published' && !req.headers.authorization) {
 //       return res.status(404).json({ message: 'Blog not found' });
 //     }
-    
+
 //     res.json(blog);
 //   } catch (err) {
 //     console.error('Get blog error:', err);
@@ -158,7 +158,7 @@
 // router.post('/', protect, upload.single('featuredImage'), async (req, res) => {
 //   try {
 //     const { title, content, category, tags, isPublished } = req.body;
-    
+
 //     if (!title || !content) {
 //       return res.status(400).json({ message: 'Title and content are required' });
 //     }
@@ -174,7 +174,7 @@
 //     let existingBlog = await Blog.findOne({ slug });
 //     let counter = 1;
 //     const originalSlug = slug;
-    
+
 //     while (existingBlog) {
 //       slug = `${originalSlug}-${counter}`;
 //       existingBlog = await Blog.findOne({ slug });
@@ -203,7 +203,7 @@
 
 //     await blog.save();
 //     res.status(201).json(blog);
-    
+
 //   } catch (err) {
 //     console.error('Create blog error:', err);
 //     res.status(500).json({ message: 'Server error creating blog' });
@@ -214,7 +214,7 @@
 // router.put('/:id', protect, upload.single('featuredImage'), async (req, res) => {
 //   try {
 //     const { title, content, category, tags, isPublished } = req.body;
-    
+
 //     let blog = await Blog.findById(req.params.id);
 //     if (!blog) {
 //       return res.status(404).json({ message: 'Blog not found' });
@@ -229,24 +229,24 @@
 //         strict: true,
 //         remove: /[*+~.()'"!:@]/g 
 //       });
-      
+
 //       // Ensure new slug is unique
 //       let existingBlog = await Blog.findOne({ slug: newSlug, _id: { $ne: blog._id } });
 //       let counter = 1;
 //       const originalSlug = newSlug;
-      
+
 //       while (existingBlog) {
 //         newSlug = `${originalSlug}-${counter}`;
 //         existingBlog = await Blog.findOne({ slug: newSlug, _id: { $ne: blog._id } });
 //         counter++;
 //       }
-      
+
 //       blog.slug = newSlug;
 //     }
 
 //     if (content) blog.content = content;
 //     if (category) blog.category = category;
-    
+
 //     // Parse tags
 //     if (tags) {
 //       try {
@@ -267,7 +267,7 @@
 
 //     await blog.save();
 //     res.json(blog);
-    
+
 //   } catch (err) {
 //     console.error('Update blog error:', err);
 //     res.status(500).json({ message: 'Server error updating blog' });
@@ -344,7 +344,7 @@ const upload = multer({
 router.get('/', async (req, res) => {
   try {
     console.log('📖 Fetching all blogs from database...');
-    
+
     // Get ONLY published blogs for public route
     const blogs = await Blog.find({
       $or: [
@@ -352,9 +352,9 @@ router.get('/', async (req, res) => {
         { isPublished: true }
       ]
     }).sort({ createdAt: -1 });
-    
+
     console.log(`✅ Found ${blogs.length} published blogs`);
-    
+
     res.json(blogs);
   } catch (err) {
     console.error('❌ Get blogs error:', err);
@@ -377,21 +377,21 @@ router.get('/admin/all', protect, async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     let blog;
-    
+
     // Check if it's a valid MongoDB ID
     if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
       blog = await Blog.findById(req.params.id);
     }
-    
+
     // If not found by ID, try finding by slug
     if (!blog) {
       blog = await Blog.findOne({ slug: req.params.id });
     }
-    
+
     if (!blog) {
       return res.status(404).json({ message: 'Blog not found' });
     }
-    
+ 
     res.json(blog);
   } catch (err) {
     console.error('Get blog error:', err);
@@ -403,7 +403,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', protect, upload.single('featuredImage'), async (req, res) => {
   try {
     const { title, content, category, tags, status } = req.body;
-    
+
     if (!title || !content) {
       return res.status(400).json({ message: 'Title and content are required' });
     }
@@ -415,10 +415,10 @@ router.post('/', protect, upload.single('featuredImage'), async (req, res) => {
       tagsArray = tags ? [tags] : [];
     }
 
-    const slug = slugify(title, { 
-      lower: true, 
+    const slug = slugify(title, {
+      lower: true,
       strict: true,
-      remove: /[*+~.()'"!:@]/g 
+      remove: /[*+~.()'"!:@]/g
     });
 
     // Check if slug already exists
@@ -451,14 +451,14 @@ router.post('/', protect, upload.single('featuredImage'), async (req, res) => {
 
   } catch (err) {
     console.error('Create blog error:', err);
-    
+
     if (err.code === 11000) {
       return res.status(400).json({ message: 'A blog with this slug already exists' });
     }
-    
-    res.status(500).json({ 
+
+    res.status(500).json({
       message: 'Server error while creating blog',
-      error: err.message 
+      error: err.message
     });
   }
 });
@@ -476,10 +476,10 @@ router.put('/:id', protect, upload.single('featuredImage'), async (req, res) => 
     // Update fields
     if (title) {
       blog.title = title.trim();
-      blog.slug = slugify(title, { 
-        lower: true, 
+      blog.slug = slugify(title, {
+        lower: true,
         strict: true,
-        remove: /[*+~.()'"!:@]/g 
+        remove: /[*+~.()'"!:@]/g
       });
     }
 
@@ -511,14 +511,14 @@ router.put('/:id', protect, upload.single('featuredImage'), async (req, res) => 
 
   } catch (err) {
     console.error('Update blog error:', err);
-    
+
     if (err.code === 11000) {
       return res.status(400).json({ message: 'A blog with this slug already exists' });
     }
-    
-    res.status(500).json({ 
+
+    res.status(500).json({
       message: 'Server error while updating blog',
-      error: err.message 
+      error: err.message
     });
   }
 });
