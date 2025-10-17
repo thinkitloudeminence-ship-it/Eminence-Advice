@@ -1217,7 +1217,9 @@
 
 
 import React from "react";
-import { Box, Container, Typography, Card, CardContent, Button, Grid } from "@mui/material";
+import { Box, Container, Typography, Card, CardContent, Button, Grid, Chip, } from "@mui/material";
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import InfoIcon from '@mui/icons-material/Info';
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import SchoolIcon from "@mui/icons-material/School";
@@ -1359,55 +1361,162 @@ export default function Services() {
       </Helmet>
 
       {/* Hero Section */}
-      <Box sx={{ py: 8, backgroundColor: "#fff7f0" }}>
-        <Container maxWidth="lg">
-          <Box textAlign="center" mb={6}>
+      <Box
+        sx={{
+          py: 10,
+          backgroundColor: "#fff7f0",
+          backgroundImage: "linear-gradient(135deg, #fff7f0 0%, #fff1e6 100%)",
+          position: "relative",
+          overflow: "hidden",
+          "&::before": {
+            content: '""',
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "4px",
+            background: `linear-gradient(90deg, ${orangeColor}, #ff9e58)`
+          }
+        }}
+      >
+        {/* Background decorative elements */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: "-10%",
+            right: "-5%",
+            width: "300px",
+            height: "300px",
+            borderRadius: "50%",
+            backgroundColor: "rgba(255, 152, 0, 0.05)",
+            zIndex: 0
+          }}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: "-10%",
+            left: "-5%",
+            width: "250px",
+            height: "250px",
+            borderRadius: "50%",
+            backgroundColor: "rgba(255, 152, 0, 0.03)",
+            zIndex: 0
+          }}
+        />
+
+        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+          <Box textAlign="center" mb={8}>
+            {/* Badge/Indicator */}
+            <Chip
+              label="End-to-End Solutions"
+              sx={{
+                backgroundColor: orangeColor,
+                color: "white",
+                fontWeight: "bold",
+                mb: 3,
+                px: 1,
+                height: "32px"
+              }}
+            />
+
             <Typography
               variant="h2"
               fontWeight="bold"
               gutterBottom
               sx={{
-                color: orangeColor,
-                fontSize: { xs: '2.5rem', md: '3.5rem' }
+                background: `linear-gradient(135deg, ${orangeColor}, #ff9e58)`,
+                backgroundClip: "text",
+                WebkitBackgroundClip: "text",
+                color: "transparent",
+                fontSize: { xs: '2.5rem', md: '3.75rem' },
+                mb: 2,
+                lineHeight: 1.2
               }}
             >
               Our Comprehensive Services
             </Typography>
+
             <Typography
-              variant="h5"
+              variant="h6"
               textAlign="center"
               color="textSecondary"
-              sx={{ maxWidth: '800px', margin: '0 auto', mb: 4 }}
+              sx={{
+                maxWidth: '800px',
+                margin: '0 auto',
+                mb: 5,
+                lineHeight: 1.6,
+                fontSize: { xs: '1rem', md: '1.25rem' }
+              }}
             >
               Your complete study abroad journey — expertly handled from start to finish with our end-to-end solutions.
             </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              onClick={handleContactRedirect} // Added onClick handler
-              sx={{
-                backgroundColor: orangeColor,
-                '&:hover': { backgroundColor: '#e55a00' },
-                px: 4,
-                py: 1.5,
-                fontSize: '1.1rem'
-              }}
-            >
-              Book Free Consultation
-            </Button>
+
+            <Box sx={{ display: "flex", justifyContent: "center", gap: 2, flexWrap: "wrap" }}>
+              <Button
+                variant="contained"
+                size="large"
+                onClick={handleContactRedirect}
+                startIcon={<CalendarTodayIcon />}
+                sx={{
+                  background: `linear-gradient(135deg, ${orangeColor}, #ff9e58)`,
+                  boxShadow: `0 4px 14px 0 ${orangeColor}40`,
+                  borderRadius: "50px",
+                  px: 4,
+                  py: 1.5,
+                  fontSize: '1.1rem',
+                  fontWeight: "bold",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-2px)",
+                    boxShadow: `0 6px 20px 0 ${orangeColor}60`,
+                    background: `linear-gradient(135deg, #e55a00, ${orangeColor})`
+                  }
+                }}
+              >
+                Book Free Consultation
+              </Button>
+
+              <Button
+                variant="outlined"
+                size="large"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                startIcon={<InfoIcon />}
+                sx={{
+                  borderColor: orangeColor,
+                  color: orangeColor,
+                  borderRadius: "50px",
+                  px: 4,
+                  py: 1.5,
+                  fontSize: '1.1rem',
+                  fontWeight: "bold",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    backgroundColor: `${orangeColor}10`,
+                    borderColor: orangeColor,
+                    transform: "translateY(-2px)"
+                  }
+                }}
+              >
+                Learn More
+              </Button>
+            </Box>
           </Box>
         </Container>
       </Box>
 
       {/* Services Grid Section */}
-      <Box sx={{ py: 8, backgroundColor: "#fff" }}>
+      <Box sx={{ py: { xs: 6, md: 8 }, backgroundColor: "#fff" }}>
         <Container maxWidth="xl">
           <Typography
             variant="h3"
             textAlign="center"
             fontWeight="bold"
             gutterBottom
-            sx={{ mb: 2 }}
+            sx={{
+              mb: 2,
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }
+            }}
           >
             End-to-End Study Abroad Solutions
           </Typography>
@@ -1415,17 +1524,29 @@ export default function Services() {
             variant="h6"
             textAlign="center"
             color="textSecondary"
-            sx={{ maxWidth: '800px', margin: '0 auto', mb: 6 }}
+            sx={{
+              maxWidth: '800px',
+              margin: '0 auto',
+              mb: { xs: 4, md: 6 },
+              fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem' },
+              px: { xs: 2, sm: 0 }
+            }}
           >
             We provide comprehensive support at every step of your international education journey
           </Typography>
 
           <Box
             sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 3,
-              justifyContent: 'center'
+              display: 'grid',
+              gridTemplateColumns: {
+                xs: '1fr',
+                sm: 'repeat(2, 1fr)',
+                md: 'repeat(3, 1fr)',
+                lg: 'repeat(4, 1fr)'
+              },
+              gap: { xs: 2, sm: 3 },
+              justifyContent: 'center',
+              alignItems: 'stretch'
             }}
           >
             {services.map((service, index) => (
@@ -1435,13 +1556,11 @@ export default function Services() {
                 sx={{
                   borderRadius: 3,
                   p: 0,
-                  width: {
-                    xs: '100%',
-                    sm: 'calc(50% - 12px)',
-                    md: 'calc(25% - 16px)' // 4 cards per row on medium+ screens
+                  height: {
+                    xs: 360,
+                    sm: 380,
+                    md: 400
                   },
-                  maxWidth: { md: 280 },
-                  height: 380,
                   display: 'flex',
                   flexDirection: 'column',
                   transition: "transform 0.3s, box-shadow 0.3s",
@@ -1460,8 +1579,10 @@ export default function Services() {
                     top: 0,
                     left: 0,
                     right: 0,
-                    height: 120,
-                    background: `linear-gradient(135deg, ${orangeColor}20, ${orangeColor}40), url(${service.background})`,
+                    height: { xs: 100, sm: 120 },
+                    background: service.background
+                      ? `linear-gradient(135deg, ${orangeColor}20, ${orangeColor}40), url(${service.background})`
+                      : `linear-gradient(135deg, ${orangeColor}20, ${orangeColor}40)`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
@@ -1472,22 +1593,25 @@ export default function Services() {
                 <CardContent sx={{
                   flexGrow: 1,
                   textAlign: "center",
-                  p: 2,
+                  p: { xs: 1.5, sm: 2 },
                   position: 'relative',
                   zIndex: 1,
-                  '&:last-child': { pb: 2 }
+                  '&:last-child': { pb: { xs: 1.5, sm: 2 } },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: '100%'
                 }}>
                   {/* Icon with Background */}
                   <Box
                     sx={{
-                      width: 80,
-                      height: 80,
+                      width: { xs: 60, sm: 70, md: 80 },
+                      height: { xs: 60, sm: 70, md: 80 },
                       borderRadius: '50%',
                       backgroundColor: 'white',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      margin: '0 auto 16px',
+                      margin: '0 auto 12px',
                       boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
                       border: `2px solid ${orangeColor}`
                     }}
@@ -1501,32 +1625,47 @@ export default function Services() {
                     gutterBottom
                     sx={{
                       mt: 1,
-                      fontSize: { xs: '1rem', md: '1.1rem' },
-                      minHeight: '3em',
+                      fontSize: {
+                        xs: '0.9rem',
+                        sm: '1rem',
+                        md: '1.1rem'
+                      },
+                      minHeight: {
+                        xs: '2.5em',
+                        sm: '3em'
+                      },
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#333'
+                      color: '#333',
+                      lineHeight: 1.3
                     }}
                   >
                     {service.title}
                   </Typography>
+
                   <Typography
                     variant="body2"
                     color="textSecondary"
                     sx={{
                       mb: 2,
-                      fontSize: '0.875rem',
+                      fontSize: {
+                        xs: '0.75rem',
+                        sm: '0.8rem',
+                        md: '0.875rem'
+                      },
                       display: '-webkit-box',
                       WebkitLineClamp: 3,
                       WebkitBoxOrient: 'vertical',
                       overflow: 'hidden',
-                      lineHeight: 1.5
+                      lineHeight: 1.5,
+                      flexGrow: 1
                     }}
                   >
                     {service.text}
                   </Typography>
-                  <Box sx={{ textAlign: 'left' }}>
+
+                  <Box sx={{ textAlign: 'left', mt: 'auto' }}>
                     {service.features.map((feature, idx) => (
                       <Typography
                         key={idx}
@@ -1535,12 +1674,19 @@ export default function Services() {
                           display: 'flex',
                           alignItems: 'center',
                           mb: 0.5,
-                          fontSize: '0.75rem',
+                          fontSize: {
+                            xs: '0.7rem',
+                            sm: '0.75rem'
+                          },
                           fontWeight: '500',
                           color: '#555'
                         }}
                       >
-                        <AutoAwesomeIcon sx={{ fontSize: 14, color: orangeColor, mr: 0.5 }} />
+                        <AutoAwesomeIcon sx={{
+                          fontSize: { xs: 12, sm: 14 },
+                          color: orangeColor,
+                          mr: 0.5
+                        }} />
                         {feature}
                       </Typography>
                     ))}
@@ -1553,13 +1699,17 @@ export default function Services() {
       </Box>
 
       {/* Process Section */}
-      <Box sx={{ py: 8, backgroundColor: "#f8f9fa" }}>
+      <Box sx={{ py: { xs: 6, md: 8 }, backgroundColor: "#f8f9fa" }}>
         <Container maxWidth="xl">
           <Typography
             variant="h3"
             textAlign="center"
             fontWeight="bold"
             gutterBottom
+            sx={{
+              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+              mb: 2
+            }}
           >
             Our 6-Step Success Process
           </Typography>
@@ -1567,17 +1717,28 @@ export default function Services() {
             variant="h6"
             textAlign="center"
             color="textSecondary"
-            sx={{ maxWidth: '800px', margin: '0 auto', mb: 6 }}
+            sx={{
+              maxWidth: '800px',
+              margin: '0 auto',
+              mb: { xs: 4, md: 6 },
+              fontSize: { xs: '1rem', sm: '1.1rem', md: '1.25rem' },
+              px: { xs: 2, sm: 0 }
+            }}
           >
             A structured approach to ensure your study abroad success
           </Typography>
 
           <Box
             sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 4,
-              justifyContent: 'center'
+              display: 'grid',
+              gridTemplateColumns: {
+                xs: '1fr',
+                sm: 'repeat(2, 1fr)',
+                lg: 'repeat(3, 1fr)'
+              },
+              gap: { xs: 3, md: 4 },
+              justifyContent: 'center',
+              alignItems: 'stretch'
             }}
           >
             {processSteps.map((step, index) => (
@@ -1589,9 +1750,11 @@ export default function Services() {
                   borderRadius: 3,
                   backgroundColor: 'white',
                   boxShadow: 2,
-                  width: { xs: '100%', sm: 'calc(50% - 16px)', md: 'calc(33.33% - 22px)' },
-                  maxWidth: { md: 400 },
-                  height: 300,
+                  height: {
+                    xs: 280,
+                    sm: 300,
+                    md: 320
+                  },
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -1611,8 +1774,10 @@ export default function Services() {
                     top: 0,
                     left: 0,
                     right: 0,
-                    height: 140,
-                    background: `linear-gradient(135deg, ${orangeColor}50, ${orangeColor}70), url(${step.background})`,
+                    height: { xs: 120, sm: 140 },
+                    background: step.background
+                      ? `linear-gradient(135deg, ${orangeColor}50, ${orangeColor}70), url(${step.background})`
+                      : `linear-gradient(135deg, ${orangeColor}50, ${orangeColor}70)`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
@@ -1624,8 +1789,8 @@ export default function Services() {
                 <Box
                   sx={{
                     position: 'absolute',
-                    top: 20,
-                    right: 20,
+                    top: { xs: 16, sm: 20 },
+                    right: { xs: 16, sm: 20 },
                     zIndex: 1,
                   }}
                 >
@@ -1637,30 +1802,30 @@ export default function Services() {
                   sx={{
                     position: 'relative',
                     zIndex: 1,
-                    p: 3,
+                    p: { xs: 2, sm: 3 },
                     width: '100%',
                     height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    mt: 4
+                    mt: { xs: 3, sm: 4 }
                   }}
                 >
                   {/* Step Number with Enhanced Design */}
                   <Box
                     sx={{
-                      width: 70,
-                      height: 70,
+                      width: { xs: 60, sm: 70 },
+                      height: { xs: 60, sm: 70 },
                       borderRadius: '50%',
                       backgroundColor: 'white',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       color: orangeColor,
-                      fontSize: '1.5rem',
+                      fontSize: { xs: '1.25rem', sm: '1.5rem' },
                       fontWeight: 'bold',
-                      mb: 2,
+                      mb: { xs: 1.5, sm: 2 },
                       boxShadow: '0 4px 15px rgba(255, 102, 0, 0.3)',
                       border: `3px solid ${orangeColor}`
                     }}
@@ -1674,17 +1839,29 @@ export default function Services() {
                     gutterBottom
                     sx={{
                       color: '#333',
-                      fontSize: { xs: '1.25rem', md: '1.5rem' }
+                      fontSize: {
+                        xs: '1.1rem',
+                        sm: '1.25rem',
+                        md: '1.5rem'
+                      },
+                      lineHeight: 1.3,
+                      mb: { xs: 1, sm: 1.5 }
                     }}
                   >
                     {step.title}
                   </Typography>
+
                   <Typography
                     variant="body1"
                     color="textSecondary"
                     sx={{
                       lineHeight: 1.6,
-                      fontSize: { xs: '0.9rem', md: '1rem' }
+                      fontSize: {
+                        xs: '0.85rem',
+                        sm: '0.9rem',
+                        md: '1rem'
+                      },
+                      px: { xs: 1, sm: 0 }
                     }}
                   >
                     {step.description}
@@ -1697,34 +1874,134 @@ export default function Services() {
       </Box>
 
       {/* CTA Section */}
-      <Box sx={{ py: 8, backgroundColor: whiteColor }}>
-        <Container maxWidth="lg">
-          <Box textAlign="center" color="#f38303ff">
-            <Typography variant="h3" fontWeight="bold" gutterBottom>
-              Ready to Start Your Journey?
-            </Typography>
-            <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-              Get free personalized counseling and take the first step towards your dream education
-            </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              onClick={handleContactRedirect} // Added onClick handler
-              sx={{
-                backgroundColor: orangeColor,
-                color: 'white',
-                '&:hover': { backgroundColor: '#e55a00' },
-                px: 4,
-                py: 1.5,
-                fontSize: '1.1rem',
-                fontWeight: 'bold'
-              }}
-            >
-              Get Started Today
-            </Button>
-          </Box>
-        </Container>
-      </Box>
+     <Box sx={{ 
+  py: { xs: 8, md: 12 }, 
+  backgroundColor: whiteColor,
+  position: 'relative',
+  overflow: 'hidden'
+}}>
+  {/* Background decorative elements */}
+  <Box
+    sx={{
+      position: 'absolute',
+      top: '-10%',
+      right: '-5%',
+      width: '300px',
+      height: '300px',
+      borderRadius: '50%',
+      background: `radial-gradient(circle, ${orangeColor}15 0%, transparent 70%)`,
+      zIndex: 0
+    }}
+  />
+  <Box
+    sx={{
+      position: 'absolute',
+      bottom: '-10%',
+      left: '-5%',
+      width: '250px',
+      height: '250px',
+      borderRadius: '50%',
+      background: `radial-gradient(circle, ${orangeColor}10 0%, transparent 70%)`,
+      zIndex: 0
+    }}
+  />
+  
+  <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+    <Box 
+      textAlign="center" 
+      sx={{
+        background: 'linear-gradient(135deg, #fff7f0 0%, #fff1e6 100%)',
+        borderRadius: 4,
+        py: { xs: 6, md: 8 },
+        px: { xs: 3, md: 6 },
+        boxShadow: '0 10px 40px rgba(255, 102, 0, 0.1)',
+        border: `1px solid ${orangeColor}20`,
+        position: 'relative'
+      }}
+    >
+      {/* Top accent line */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4px',
+          background: `linear-gradient(90deg, ${orangeColor}, #ff9e58)`
+        }}
+      />
+
+      <Typography 
+        variant="h3" 
+        fontWeight="bold" 
+        gutterBottom
+        sx={{
+          background: `linear-gradient(135deg, ${orangeColor}, #ff9e58)`,
+          backgroundClip: 'text',
+          WebkitBackgroundClip: 'text',
+          color: 'transparent',
+          fontSize: { xs: '2rem', md: '3rem' },
+          mb: 2,
+          lineHeight: 1.2
+        }}
+      >
+        Ready to Start Your Journey?
+      </Typography>
+      
+      <Typography 
+        variant="h6" 
+        sx={{ 
+          mb: 4, 
+          opacity: 0.8,
+          fontSize: { xs: '1rem', md: '1.25rem' },
+          lineHeight: 1.6,
+          maxWidth: '600px',
+          margin: '0 auto'
+        }}
+      >
+        Get free personalized counseling and take the first step towards your dream education
+      </Typography>
+
+      <Button
+        variant="contained"
+        size="large"
+        onClick={handleContactRedirect}
+        sx={{
+          background: `linear-gradient(135deg, ${orangeColor}, #ff9e58)`,
+          color: 'white',
+          borderRadius: '50px',
+          px: { xs: 4, md: 6 },
+          py: 1.5,
+          fontSize: { xs: '1rem', md: '1.1rem' },
+          fontWeight: 'bold',
+          boxShadow: `0 4px 20px ${orangeColor}40`,
+          transition: 'all 0.3s ease',
+          minWidth: { xs: '200px', md: '220px' },
+          '&:hover': { 
+            transform: 'translateY(-2px)',
+            boxShadow: `0 8px 30px ${orangeColor}60`,
+            background: `linear-gradient(135deg, #e55a00, ${orangeColor})`
+          }
+        }}
+      >
+        Get Started Today
+      </Button>
+      
+      {/* Trust indicator */}
+      <Typography 
+        variant="caption" 
+        sx={{ 
+          display: 'block', 
+          mt: 3, 
+          opacity: 0.7,
+          fontSize: '0.8rem'
+        }}
+      >
+        🎓 Trusted by 10,000+ students worldwide
+      </Typography>
+    </Box>
+  </Container>
+</Box>
     </>
   );
 }
