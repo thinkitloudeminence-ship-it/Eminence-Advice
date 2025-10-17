@@ -11,9 +11,9 @@ const checkBlogs = async () => {
     console.log('✅ Connected to MongoDB');
 
     const blogs = await Blog.find().sort({ createdAt: -1 });
-    
+
     console.log(`\n📊 TOTAL BLOGS IN DATABASE: ${blogs.length}\n`);
-    
+
     blogs.forEach((blog, index) => {
       console.log(`--- Blog ${index + 1} ---`);
       console.log(`Title: ${blog.title}`);
@@ -26,10 +26,10 @@ const checkBlogs = async () => {
     });
 
     // Count published blogs
-    const publishedCount = blogs.filter(blog => 
+    const publishedCount = blogs.filter(blog =>
       blog.status === 'published' || blog.isPublished === true
     ).length;
-    
+
     console.log(`🎯 PUBLISHED BLOGS: ${publishedCount}`);
     console.log(`📝 DRAFT BLOGS: ${blogs.length - publishedCount}`);
 

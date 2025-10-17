@@ -19,7 +19,7 @@ const connectDB = async () => {
 
 const createAdmin = async () => {
     console.log('🚀 Starting admin creation...');
-    
+
     await connectDB();
 
     const adminData = {
@@ -41,7 +41,7 @@ const createAdmin = async () => {
         console.log('⏳ Creating new admin user...');
         const admin = new Admin(adminData);
         await admin.save();
-        
+
         console.log('✅ Admin created successfully!');
         console.log('================================');
         console.log('📧 Email:', adminData.email);
@@ -49,7 +49,7 @@ const createAdmin = async () => {
         console.log('🆔 ID:', admin._id);
         console.log('================================');
         console.log('💡 You can now login to admin dashboard');
-        
+
     } catch (err) {
         console.error('❌ Error creating admin:', err.message);
         console.log('🔧 Please check:');

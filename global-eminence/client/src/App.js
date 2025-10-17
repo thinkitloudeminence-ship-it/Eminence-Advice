@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
 import ParticleBackground from './components/ParticleBackground';
+import SplashCursor from './components/SplashCursor'
 
 // Public Pages
 import Home from './pages/Home';
@@ -49,6 +50,7 @@ function App() {
 
       <ParticleBackground />
       <Router>
+        <SplashCursor />
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Navbar />
           <Box component="main" sx={{ flexGrow: 1 }}>
